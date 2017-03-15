@@ -74,7 +74,7 @@ class Chef
 
       def install_packages
         Array(new_resource.install_pkgs).map do |pkg|
-          r = Chef::Resource::Package.new(pkg, run_context)
+          r = build_resource(:package, pkg)
           r.run_action(:install)
           r
         end

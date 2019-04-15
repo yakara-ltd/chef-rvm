@@ -39,7 +39,8 @@ default['rvm']['gems']      = Hash.new
 default['rvm']['user_gems'] = Hash.new
 
 # hash of rvmrc options
-default['rvm']['rvmrc_env'] = { "rvm_gem_options" => "--no-ri --no-rdoc" }
+# default['rvm']['rvmrc_env'] = { "rvm_gem_options" => "--no-ri --no-rdoc" }
+default['rvm']['rvmrc_env'] = { "rvm_gem_options" => "" }
 
 # a hash of user hashes, each an isolated per-user RVM installation
 default['rvm']['installs'] = Hash.new

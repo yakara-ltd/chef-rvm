@@ -20,6 +20,9 @@
 include_recipe "rvm"
 
 node["rvm"]["installs"].each do |user, opts|
+  Chef::Log.info("********************************************************")
+  Chef::Log.info("Installing RVM for user #{user}, options #{opts.inspect}")
+  Chef::Log.info("********************************************************")
   # if user hash is falsy (nil, false) then we're not installing
   next unless opts
 

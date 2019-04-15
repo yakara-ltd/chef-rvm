@@ -28,7 +28,7 @@ class Chef
       # @param [String, #to_s] the RVM Ruby string
       # @return [String] the Ruby string, minus gemset
       def select_ruby(ruby_string)
-        ruby_string.split('@').first
+        ruby_string.split('@').first || raise("Unable to find ruby in string #{ruby_string}")
       end
 
       ##
@@ -51,6 +51,7 @@ class Chef
       # @param [String] a specific user RVM or nil for system-wide
       # @return [String] a fully qualified RVM Ruby string
       def normalize_ruby_string(ruby_string, user = new_resource.user, patch = new_resource.patch)
+        raise "nil ruby string" if ruby_string.nil?
         return "system" if ruby_string == "system"
         fetched_ruby_string = StringCache.fetch(ruby_string, user)
         return "#{fetched_ruby_string} --patch #{patch}" if patch
